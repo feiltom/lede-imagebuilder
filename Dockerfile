@@ -1,7 +1,6 @@
 FROM debian:8
 LABEL maintainer "Jan Delgado <jdelgado@gmx.net>"
 
-
 RUN echo "deb http://ftp.debian.org/debian jessie-backports main" >> /etc/apt/sources.list \
     && apt-get update \
     && apt-get -t jessie-backports install "gosu" \
@@ -19,9 +18,8 @@ RUN chmod 755 /usr/local/bin/entrypoint.sh
 
 # install the image builder. use tmpfile so that tar's compression
 # autodetection works.
-ARG BUILDER_URL
 RUN mkdir -p /lede/imagebuilder && \
-    wget  --progress=bar:force:noscroll $BUILDER_URL -O /tmp/imagebuilder && \
+    wget  --progress=bar:force:noscroll "http://openwrt.tetaneutral.net/releases/18.06.1/targets/ar71xx/generic/openwrt-imagebuilder-18.06.1-ar71xx-generic.Linux-x86_64.tar.xz" -O /tmp/imagebuilder && \
       tar xf /tmp/imagebuilder --strip-components=1 -C /lede/imagebuilder &&\
       rm -f /tmp/imagebuilder
 

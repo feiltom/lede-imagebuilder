@@ -1,5 +1,4 @@
 FROM debian:8
-LABEL maintainer "Jan Delgado <jdelgado@gmx.net>"
 
 RUN echo "deb http://ftp.debian.org/debian jessie-backports main" >> /etc/apt/sources.list \
     && apt-get update \

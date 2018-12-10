@@ -23,6 +23,7 @@ RUN mkdir -p /lede/imagebuilder && \
       rm -f /tmp/imagebuilder
 
 
+WORKDIR "/lede/imageb"
 WORKDIR "/lede/imagebuilder"
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["/bin/bash"]

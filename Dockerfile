@@ -15,12 +15,12 @@ RUN echo "deb http://archive.debian.org/debian/ jessie-backports main" >> /etc/a
 
 ADD etc/entrypoint.sh /usr/local/bin/
 RUN chmod 755 /usr/local/bin/entrypoint.sh
+# specify the URL where the builder can be downloaded.
 
 # install the image builder. use tmpfile so that tar's compression
 # autodetection works.
-ARG BUILDER_URL
 RUN mkdir -p /lede/imagebuilder && \
-    wget  --progress=bar:force:noscroll $BUILDER_URL -O /tmp/imagebuilder && \
+    wget  --progress=bar:force:noscroll https://downloads.lede-project.org/releases/18.06.1/targets/ramips/mt76x/lede-imagebuilder-18.06.1-ramips-mt76x.Linux-x86_64.tar.xz -O /tmp/imagebuilder && \
       tar xf /tmp/imagebuilder --strip-components=1 -C /lede/imagebuilder &&\
       rm -f /tmp/imagebuilder
 
